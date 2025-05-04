@@ -4,21 +4,23 @@ from datetime import datetime
 
 # Lista podstron do monitorowania
 URLS = {
-    'Nowości': 'https://crossjeans.pl/lp-nowosci',
-    'Jeansy damskie': 'https://crossjeans.pl/ona/jeansy-damskie',
-    'Spodnie damskie': 'https://crossjeans.pl/ona/spodnie-damskie',
-    'Odzież damska': 'https://crossjeans.pl/ona/odziez-damska',
-    'Buty damskie': 'https://crossjeans.pl/ona/buty-damskie',
-    'Akcesoria damskie': 'https://crossjeans.pl/ona/akcesoria-damskie',
-    'Basic damski': 'https://crossjeans.pl/ona/basic-damski',
-    'Komplety damskie': 'https://crossjeans.pl/ona/komplety-damskie',
-    'Odzież męska': 'https://crossjeans.pl/on/odziez-meska',
-    'Jeansy męskie': 'https://crossjeans.pl/on/jeansy-meskie',
-    'Spodnie męskie': 'https://crossjeans.pl/on/spodnie-meskie',
-    'Buty męskie': 'https://crossjeans.pl/on/buty-meskie',
-    'Akcesoria męskie': 'https://crossjeans.pl/on/akcesoria-meskie',
-    'Basic męski': 'https://crossjeans.pl/on/basic-meski',
+    'Jeansy damskie': 'https://crossjeans.pl/ona/jeansy-damskie?limit=0',
+    'Spodnie damskie': 'https://crossjeans.pl/ona/spodnie-damskie?limit=0',
+    'Odzież damska': 'https://crossjeans.pl/ona/odziez-damska?limit=0',
+    'Buty damskie': 'https://crossjeans.pl/ona/buty-damskie?limit=0',
+    'Akcesoria damskie': 'https://crossjeans.pl/ona/akcesoria-damskie?limit=0',
+    'Basic damski': 'https://crossjeans.pl/ona/basic-damski?limit=0',
+    'Komplety damskie': 'https://crossjeans.pl/ona/komplety-damskie?limit=0',
+    'Jeansy męskie': 'https://crossjeans.pl/on/jeansy-meskie?limit=0',
+    'Spodnie męskie': 'https://crossjeans.pl/on/spodnie-meskie?limit=0',
+    'Odzież męska': 'https://crossjeans.pl/on/odziez-meska?limit=0',
+    'Buty męskie': 'https://crossjeans.pl/on/buty-meskie?limit=0',
+    'Akcesoria męskie': 'https://crossjeans.pl/on/akcesoria-meskie?limit=0',
+    'Basic męski': 'https://crossjeans.pl/on/basic-meski?limit=0',
+    'Nowości damskie': 'https://crossjeans.pl/lp-nowosci-damskie?limit=0',
+    'Nowości męskie': 'https://crossjeans.pl/lp-nowosci-meskie?limit=0',
 }
+
 
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
 DATA_FILE = 'last_seen.txt'        # plik zapamiętujący wcześniej widziane linki
