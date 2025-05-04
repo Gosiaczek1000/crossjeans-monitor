@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-# 5 stron do monitorowania
+# Lista podstron do monitorowania
 URLS = {
     'Nowości': 'https://crossjeans.pl/lp-nowosci',
     'Jeansy damskie': 'https://crossjeans.pl/ona/jeansy-damskie',
@@ -21,8 +21,8 @@ URLS = {
 }
 
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
-DATA_FILE = 'last_seen.txt'       # produkty, które już widzieliśmy
-OUTPUT_FILE = 'new_products.txt'  # nowości, które zapisujemy
+DATA_FILE = 'last_seen.txt'        # plik zapamiętujący wcześniej widziane linki
+OUTPUT_FILE = 'new_products.txt'   # plik ze znalezionymi nowościami
 
 def get_products(url):
     response = requests.get(url, headers=HEADERS)
