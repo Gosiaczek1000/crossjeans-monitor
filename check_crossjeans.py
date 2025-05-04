@@ -8,7 +8,16 @@ URLS = {
     'Jeansy damskie': 'https://crossjeans.pl/ona/jeansy-damskie',
     'Spodnie damskie': 'https://crossjeans.pl/ona/spodnie-damskie',
     'Odzież damska': 'https://crossjeans.pl/ona/odziez-damska',
+    'Buty damskie': 'https://crossjeans.pl/ona/buty-damskie',
+    'Akcesoria damskie': 'https://crossjeans.pl/ona/akcesoria-damskie',
+    'Basic damski': 'https://crossjeans.pl/ona/basic-damski',
+    'Komplety damskie': 'https://crossjeans.pl/ona/komplety-damskie',
     'Odzież męska': 'https://crossjeans.pl/on/odziez-meska',
+    'Jeansy męskie': 'https://crossjeans.pl/on/jeansy-meskie',
+    'Spodnie męskie': 'https://crossjeans.pl/on/spodnie-meskie',
+    'Buty męskie': 'https://crossjeans.pl/on/buty-meskie',
+    'Akcesoria męskie': 'https://crossjeans.pl/on/akcesoria-meskie',
+    'Basic męski': 'https://crossjeans.pl/on/basic-meski',
 }
 
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
