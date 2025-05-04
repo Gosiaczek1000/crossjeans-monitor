@@ -1,15 +1,22 @@
 import requests
 from bs4 import BeautifulSoup
 
-URL = 'https://crossjeans.pl/lp-nowosci'
+URLS = {
+    'Nowości': 'https://crossjeans.pl/lp-nowosci',
+    'Jeansy damskie': 'https://crossjeans.pl/ona/jeansy-damskie',
+    'Spodnie damskie': 'https://crossjeans.pl/ona/spodnie-damskie',
+    'Odzież damska': 'https://crossjeans.pl/ona/odziez-damska',
+    'Odzież męska': 'https://crossjeans.pl/on/odziez-meska',
+}
+
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
 DATA_FILE = 'last_seen.txt'
 
-def get_products():
-    response = requests.get(URL, headers=HEADERS)
+def get_products(url):
+    response = requests.get(url, headers=HEADERS)
     soup = BeautifulSoup(response.text, 'html.parser')
-    products = soup.select('a.product-item-link')
-    return [p.get('href') for p in products]
+    links = soup.select('a.product-item')
+    return [link.get('href') for link in links if link.get('href')]
 
 def load_last_seen():
     try:
@@ -22,13 +29,18 @@ def save_last_seen(products):
     with open(DATA_FILE, 'w') as f:
         f.write('\n'.join(products))
 
-def notify(new_products):
-    print("NOWE PRODUKTY:")
-    for link in new_products:
-        print("https://www.crossjeans.com" + link)
+def notify(new_links):
+    print("NOWE PRODUKTY ZNALEZIONE:")
+    for link in new_links:
+        print("https://crossjeans.pl" + link)
 
 def main():
-    current_products = set(get_products())
+    current_products = set()
+    for name, url in URLS.items():
+        print(f"Sprawdzam: {name} ({url})")
+        products = get_products(url)
+        current_products.update(products)
+
     last_seen = load_last_seen()
     new = current_products - last_seen
 
