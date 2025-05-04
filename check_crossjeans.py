@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-URL = 'https://www.crossjeans.com/pl/new'
+URL = 'https://crossjeans.pl/lp-nowosci'
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
 DATA_FILE = 'last_seen.txt'
 
