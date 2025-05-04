@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
 
+# 5 stron do monitorowania
 URLS = {
     'Nowości': 'https://crossjeans.pl/lp-nowosci',
     'Jeansy damskie': 'https://crossjeans.pl/ona/jeansy-damskie',
@@ -10,7 +12,8 @@ URLS = {
 }
 
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
-DATA_FILE = 'last_seen.txt'
+DATA_FILE = 'last_seen.txt'       # produkty, które już widzieliśmy
+OUTPUT_FILE = 'new_products.txt'  # nowości, które zapisujemy
 
 def get_products(url):
     response = requests.get(url, headers=HEADERS)
@@ -29,6 +32,12 @@ def save_last_seen(products):
     with open(DATA_FILE, 'w') as f:
         f.write('\n'.join(products))
 
+def log_new_products(new_links):
+    with open(OUTPUT_FILE, 'a') as f:
+        f.write(f"\n=== {datetime.now().strftime('%Y-%m-%d %H:%M')} ===\n")
+        for link in new_links:
+            f.write("https://crossjeans.pl" + link + '\n')
+
 def notify(new_links):
     print("NOWE PRODUKTY ZNALEZIONE:")
     for link in new_links:
@@ -37,15 +46,15 @@ def notify(new_links):
 def main():
     current_products = set()
     for name, url in URLS.items():
-        print(f"Sprawdzam: {name} ({url})")
-        products = get_products(url)
-        current_products.update(products)
+        print(f"Sprawdzam: {name}")
+        current_products.update(get_products(url))
 
     last_seen = load_last_seen()
     new = current_products - last_seen
 
     if new:
         notify(new)
+        log_new_products(new)
         save_last_seen(current_products)
     else:
         print("Brak nowych produktów.")
