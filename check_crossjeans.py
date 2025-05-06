@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-# Lista podstron do monitorowania
+# Lista podstron z pełnymi limitami i paginacją
 URLS = {
     'Jeansy damskie': 'https://crossjeans.pl/ona/jeansy-damskie?limit=0',
     'Spodnie damskie': 'https://crossjeans.pl/ona/spodnie-damskie?limit=0',
@@ -13,18 +13,21 @@ URLS = {
     'Komplety damskie': 'https://crossjeans.pl/ona/komplety-damskie?limit=0',
     'Jeansy męskie': 'https://crossjeans.pl/on/jeansy-meskie?limit=0',
     'Spodnie męskie': 'https://crossjeans.pl/on/spodnie-meskie?limit=0',
-    'Odzież męska': 'https://crossjeans.pl/on/odziez-meska?limit=0',
     'Buty męskie': 'https://crossjeans.pl/on/buty-meskie?limit=0',
     'Akcesoria męskie': 'https://crossjeans.pl/on/akcesoria-meskie?limit=0',
     'Basic męski': 'https://crossjeans.pl/on/basic-meski?limit=0',
     'Nowości damskie': 'https://crossjeans.pl/lp-nowosci-damskie?limit=0',
     'Nowości męskie': 'https://crossjeans.pl/lp-nowosci-meskie?limit=0',
+    'Odzież męska str. 1': 'https://crossjeans.pl/on/odziez-meska?limit=100',
+    'Odzież męska str. 2': 'https://crossjeans.pl/on/odziez-meska?limit=100&page=2',
+    'Odzież męska str. 3': 'https://crossjeans.pl/on/odziez-meska?limit=100&page=3',
+    'Odzież męska str. 4': 'https://crossjeans.pl/on/odziez-meska?limit=100&page=4',
+    'Odzież męska str. 5': 'https://crossjeans.pl/on/odziez-meska?limit=100&page=5',
 }
 
-
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
-DATA_FILE = 'last_seen.txt'        # plik zapamiętujący wcześniej widziane linki
-OUTPUT_FILE = 'new_products.txt'   # plik ze znalezionymi nowościami
+DATA_FILE = 'last_seen.txt'        # zapisuje, co już było
+OUTPUT_FILE = 'new_products.txt'   # zapisuje nowe linki
 
 def get_products(url):
     response = requests.get(url, headers=HEADERS)
