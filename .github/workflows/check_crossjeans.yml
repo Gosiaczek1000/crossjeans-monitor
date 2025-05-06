@@ -2,23 +2,29 @@ name: Sprawdź nowości Cross Jeans
 
 on:
   schedule:
-    - cron: "0 7 * * *"  # codziennie o 7:00 rano
+    - cron: "0 7 * * *"  # codziennie o 7:00 UTC = 9:00 czasu polskiego
   workflow_dispatch:
 
 jobs:
   check-products:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: pip install requests beautifulsoup4
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
 
-    - name: Run skrypt
-      run: python check_crossjeans.py
+      - name: Run skrypt
+        run: python check_crossjeans.py
+
+      - name: Upload result
+        uses: actions/upload-artifact@v3
+        with:
+          name: new-products
+          path: new_products.txt
