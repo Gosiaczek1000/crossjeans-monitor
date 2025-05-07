@@ -26,8 +26,11 @@ URLS = {
 }
 
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
-DATA_FILE = 'last_seen.txt'
-OUTPUT_FILE = 'new_products.txt'
+from datetime import datetime
+
+# Format nazw plików wg daty
+dzis = datetime.today().strftime("%Y-%m-%d")
+DATA_FILE = f"produkty_{dzis}.txt"         # Zawiera wszystkie linki z danego dnia
 
 def get_products(url):
     response = requests.get(url, headers=HEADERS)
