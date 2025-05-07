@@ -2,7 +2,7 @@ name: Sprawdź nowości Cross Jeans
 
 on:
   schedule:
-    - cron: "0 7 * * *"  # codziennie o 7:00 UTC = 9:00 czasu polskiego
+    - cron: "0 7 * * *"  # 9:00 czasu polskiego (czyli 7:00 UTC)
   workflow_dispatch:
 
 jobs:
@@ -22,9 +22,3 @@ jobs:
 
       - name: Run skrypt
         run: python check_crossjeans.py
-
-      - name: Upload result
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          name: new-products
-          path: new_products.txt
